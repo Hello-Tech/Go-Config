@@ -81,6 +81,10 @@ func (self *IniReader) loadIni(filePath string) map[string]interface{} {
 			continue
 		}
 
+		if strings.HasPrefix(line, ";") {
+			continue
+		}
+
 		if strings.HasPrefix(line, "[") {
 			if strings.HasSuffix(line, "]") {
 				tempSection := line[1 : len(line)-1]
