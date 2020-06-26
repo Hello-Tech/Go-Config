@@ -53,6 +53,20 @@ func (self *IniReader) LoadIni(filePath string) bool {
 	return true
 }
 
+func (self *IniReader) IsValid() bool {
+	return true
+}
+
+func makesureExistArray(key string, data map[string]interface{}) []interface{} {
+	val, ok := data[key]
+	if ok {
+
+	}
+
+	val = make([]interface{}, 0)
+	data[key] = val
+}
+
 func (self *IniReader) loadIni(filePath string) map[string]interface{} {
 	result := make(map[string]interface{})
 
@@ -112,7 +126,16 @@ func (self *IniReader) loadIni(filePath string) map[string]interface{} {
 			key = strings.TrimSpace(key)
 			val = strings.TrimSpace(val)
 
-			currentArr[key] = val
+			if strings.HasSuffix(key, ":") {
+				// extend ini, use := as an array
+				if len(key) > 1 {
+
+				} else {
+					// the key is :?, error data, ignore
+				}
+			} else {
+				currentArr[key] = val
+			}
 		}
 	}
 
