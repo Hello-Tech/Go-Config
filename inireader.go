@@ -57,7 +57,7 @@ func (self *IniReader) IsValid() bool {
 	return true
 }
 
-func makesureExistArray(key string, data map[string]interface{}) []interface{} {
+func makesureExistArray(key string, data map[string]interface{}) {
 	val, ok := data[key]
 	if ok {
 
